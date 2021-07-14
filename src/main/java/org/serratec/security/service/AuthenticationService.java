@@ -29,7 +29,7 @@ public class AuthenticationService implements UserDetailsService{
 		throw new UsernameNotFoundException("User not found");
 	}	
 	
-	public Usuario getCliente() {
+	public Usuario getUsuario() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String corrente = authentication.getName();
 		

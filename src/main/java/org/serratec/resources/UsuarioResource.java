@@ -87,23 +87,25 @@ public class UsuarioResource {
 	
 	
 	@PutMapping("/usuario/{id}")
-	public ResponseEntity<?> putUsuario(@PathVariable Long id, @RequestBody Usuario novo) {
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UsuarioCadastroDTO dto ) throws UsuarioException{
 		
-		try {
-			Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new UsuarioException("Usuário não encontrado.") );
-			
-			if(novo.getNome() != null && !novo.getNome().isBlank())
-				usuario.setNome(novo.getNome());
-						
-			usuarioRepository.save(usuario);
-			
-			return new ResponseEntity<>(new UsuarioCompletoDTO(usuario), HttpStatus.OK);
-		} catch (UsuarioException e) {
-			return new ResponseEntity<>("Erro ao atualizar seu cadastro.", HttpStatus.BAD_REQUEST);
-		}
+		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new UsuarioException ("Usuário não encontrado."));
+		
+		usuario.setEmail(dto.getEmail());
+		usuario.setSenha(dto.getSenha());
+		usuario.setNome(dto.getNome());
+		usuario.setCPF(dto.getCpf());
+		usuario.setDataNascimento(dto.getDataNascimento());
+		usuario.setUrl(dto.getUrl());
+				
+		usuario.setSenha(dto.getSenha());		
+				
+		usuarioRepository.save(usuario);
+		
+		return new  ResponseEntity<>("Cliente alterado com sucesso", HttpStatus.OK);		
 	}
 	
-	
+		
 	@GetMapping("/usuario/desativar/{email}")
 	public ResponseEntity<?> getDesativar(@PathVariable String email) {
 
@@ -132,4 +134,29 @@ public class UsuarioResource {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	/*@ApiOperation(value = "Envio de email para recuperação de senha.")
+	@PostMapping("cliente/email")
+	public ResponseEntity<?> sendEmail(@RequestBody ClienteSolicitarEnvioEmailDTO dto) throws ClienteException, MessagingException{
+		
+		Cliente cliente = dto.toCliente(clienteRepository);
+		
+		emailService.enviar("Olá, você solicitou a recuperação de email. Poderá ser feito pelo seguinte link: http://localhost:3000/alterar-senha", cliente.getNome(),
+				cliente.getEmail());
+		
+		return new ResponseEntity<>("As instruções para a recuperação da senha foram enviadas para o seu email", HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "Recuperação de senha.")
+	@PostMapping("cliente/recuperacao")
+	public ResponseEntity<?> recuperarSenha(@RequestBody ClienteAlterarSenhaDTO dto) throws ClienteException{
+		
+		Cliente cliente = dto.toCliente(clienteRepository);
+		
+		clienteRepository.save(cliente);
+		
+		return new ResponseEntity<>("Senha alterada com sucesso.", HttpStatus.OK);
+	}*/
+	
+	
 } 
