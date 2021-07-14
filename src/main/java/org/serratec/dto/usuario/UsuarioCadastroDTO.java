@@ -37,6 +37,8 @@ public class UsuarioCadastroDTO {
 	@NotNull
 	private LocalDate dataNascimento;
 	
+	private String url;
+	
 	
 	public Usuario toUsuario() {
 
@@ -50,7 +52,8 @@ public class UsuarioCadastroDTO {
 		
 		c.setNome(this.nome);
 		c.setCPF(this.cpf);		
-		c.setDataNascimento(this.dataNascimento);		
+		c.setDataNascimento(this.dataNascimento);
+		c.setUrl(this.url);
 		
 		return c;
 	}
@@ -71,5 +74,9 @@ public class UsuarioCadastroDTO {
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
+	public String getUrl() {
+		return url;
+	}
+	
 		
 }

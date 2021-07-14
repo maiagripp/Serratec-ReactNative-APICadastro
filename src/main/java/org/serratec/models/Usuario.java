@@ -47,6 +47,9 @@ public class Usuario implements UserDetails {
 	
 	@NotNull
 	private LocalDate dataNascimento;
+	
+	@Column(columnDefinition="TEXT")
+	private String url;
 
 	private Boolean statusConta = true;
 	
@@ -93,6 +96,12 @@ public class Usuario implements UserDetails {
 	}
 	public void setStatusConta(Boolean statusConta) {
 		this.statusConta = statusConta;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	

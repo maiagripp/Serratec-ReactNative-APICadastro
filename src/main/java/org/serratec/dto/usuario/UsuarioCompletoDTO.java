@@ -10,12 +10,14 @@ public class UsuarioCompletoDTO {
 	private String cpf;
 	private LocalDate dataNascimento;
 	private Boolean statusConta;
+	private String url;
 	
 	public UsuarioCompletoDTO(Usuario usuario) {
 		this.email = usuario.getEmail();
 		this.nome = usuario.getNome();
 		this.cpf = usuario.getCPF();
 		this.dataNascimento = usuario.getDataNascimento();
+		this.url = usuario.getUrl();
 		this.statusConta = usuario.getStatusConta();
 	}
 
@@ -34,5 +36,9 @@ public class UsuarioCompletoDTO {
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
+	public String getUrl() {
+		return url;
+	}
+	
 	
 }
