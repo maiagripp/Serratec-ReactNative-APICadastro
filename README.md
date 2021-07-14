@@ -10,7 +10,8 @@ http://localhost:8080/usuario
 	"senha": "12345678",
 	"nome": "Luluzinha",
 	"cpf": "36422166095",
-	"dataNascimento":"1999-09-20"
+	"dataNascimento":"1999-09-20",
+	"url": "https://img.ibxk.com.br/2012/5/materias/89232585816113157_crop.jpg?w=1120&h=420&mode=crop&scale=both"
 }
 
 
