@@ -38,8 +38,27 @@ http://localhost:8080/usuario/{1}
 <h3>GET Desativar a Conta de um Usuário</h3>
 http://localhost:8080/usuario/desativar/{email}
 
+
 <h3>GET Reativar a Conta de um Usuário</h3>
 http://localhost:8080/usuario/reativar/{email}
+
+
+<h3>POST Solicitar email para recuperação de senha</h3>
+http://localhost:8080/usuario/email-senha
+
+{
+	"email": "luciana_boher@gmail.com"
+}
+
+
+<h3>POST Alteração de Senha</h3>
+http://localhost:8080/usuario/alterar-senha
+
+{
+	"email": "luciana_boher@gmail.com",
+	"senha": "00000000"
+}
+
 
 
 <h3>POST de Authorization</h3>
