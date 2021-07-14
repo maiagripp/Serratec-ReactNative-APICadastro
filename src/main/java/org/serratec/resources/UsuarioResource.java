@@ -144,6 +144,9 @@ public class UsuarioResource {
 		
 		Usuario usuario = dto.toUsuario(usuarioRepository);
 		
+		//String token = UUID.randomUUID().toString();
+	    //dto.createPasswordResetTokenForUsuario(usuario, token);
+		
 		emailService.enviar("Alteração de senha", "Você solicitou a recuperação de senha. Poderá ser feito pelo seguinte link: http://localhost:8080/usuario/alterar-senha",usuario.getEmail());
 				
 		return new ResponseEntity<>("As instruções para a recuperação da senha foram enviadas para o seu email", HttpStatus.OK);
@@ -159,6 +162,9 @@ public class UsuarioResource {
 		
 		return new ResponseEntity<>("Senha alterada com sucesso.", HttpStatus.OK);
 	}
+	
+	
+			
 	
 	
 } 
