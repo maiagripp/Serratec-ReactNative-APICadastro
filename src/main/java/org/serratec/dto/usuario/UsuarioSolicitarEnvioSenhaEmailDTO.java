@@ -4,7 +4,7 @@ import org.serratec.exception.UsuarioException;
 import org.serratec.models.Usuario;
 import org.serratec.repository.UsuarioRepository;
 
-public class UsuarioRecuperaSenhaEmailDTO {
+public class UsuarioSolicitarEnvioSenhaEmailDTO {
 
 private String email;
 	
@@ -16,8 +16,9 @@ private String email;
 	}
 	
 	
-	/*public void setCpf(String email) {
-		this.email = email;
-	}*/
+	public String getEmail() {
+		return email;
+	}
+	
 	
 }

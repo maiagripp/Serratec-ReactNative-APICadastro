@@ -26,7 +26,7 @@ public class EmailService {
                 "    <title>" + titulo + "</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "<div><b>Olá! Aqui é a UniGames Online!</b></div>\n" +
+                "<div><b>Olá! Aqui é a UniGames Online.</b></div>\n" +
                 "\n" +
                 "<div>" + texto + "</div>\n" +
                 "</body>\n" +

@@ -3,8 +3,12 @@ package org.serratec.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
+import org.serratec.dto.usuario.UsuarioAlterarSenhaDTO;
 import org.serratec.dto.usuario.UsuarioCadastroDTO;
 import org.serratec.dto.usuario.UsuarioCompletoDTO;
+import org.serratec.dto.usuario.UsuarioSolicitarEnvioSenhaEmailDTO;
 import org.serratec.exception.UsuarioException;
 import org.serratec.metodos.ValidaCPF;
 import org.serratec.models.Usuario;
@@ -121,7 +125,7 @@ public class UsuarioResource {
 	}
 	
 	
-	@GetMapping("/usuario/ativar/{email}")
+	@GetMapping("/usuario/reativar/{email}")
 	public ResponseEntity<?> getAtivar(@PathVariable String email) {
 
 		try {
@@ -135,28 +139,26 @@ public class UsuarioResource {
 		}
 	}
 	
-	/*@ApiOperation(value = "Envio de email para recuperação de senha.")
-	@PostMapping("cliente/email")
-	public ResponseEntity<?> sendEmail(@RequestBody ClienteSolicitarEnvioEmailDTO dto) throws ClienteException, MessagingException{
+	@PostMapping("/usuario/email-senha")
+	public ResponseEntity<?> sendEmail(@RequestBody UsuarioSolicitarEnvioSenhaEmailDTO dto) throws UsuarioException, MessagingException{
 		
-		Cliente cliente = dto.toCliente(clienteRepository);
+		Usuario usuario = dto.toUsuario(usuarioRepository);
 		
-		emailService.enviar("Olá, você solicitou a recuperação de email. Poderá ser feito pelo seguinte link: http://localhost:3000/alterar-senha", cliente.getNome(),
-				cliente.getEmail());
-		
+		emailService.enviar("Alteração de senha", "Você solicitou a recuperação de senha. Poderá ser feito pelo seguinte link: http://localhost:8080/usuario/alterar-senha",usuario.getEmail());
+				
 		return new ResponseEntity<>("As instruções para a recuperação da senha foram enviadas para o seu email", HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Recuperação de senha.")
-	@PostMapping("cliente/recuperacao")
-	public ResponseEntity<?> recuperarSenha(@RequestBody ClienteAlterarSenhaDTO dto) throws ClienteException{
+	
+	@PostMapping("/usuario/alterar-senha")
+	public ResponseEntity<?> recuperarSenha(@RequestBody UsuarioAlterarSenhaDTO dto) throws UsuarioException{
 		
-		Cliente cliente = dto.toCliente(clienteRepository);
+		Usuario usuario = dto.toUsuario(usuarioRepository);
 		
-		clienteRepository.save(cliente);
+		usuarioRepository.save(usuario);
 		
 		return new ResponseEntity<>("Senha alterada com sucesso.", HttpStatus.OK);
-	}*/
+	}
 	
 	
 } 
